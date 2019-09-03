@@ -59,15 +59,29 @@ void main()
      {
          printf(" %d ",hash_table[i]);
      }
-     printf("\n THE LOAD FACTOR IS NOW > 50 MAKING NEW HASH TABLE AND REHASHING.......")
-     for(i=0;i<13;i++)
+     printf("\n THE LOAD FACTOR IS NOW > 50 MAKING NEW HASH TABLE AND REHASHING.......");
+     for(i=0;i<26;i++)
+        hash_table2[i]=-1;
+     for(i=0;i<26;i++)
      {
          key=hash_table[i];
          nindex=h1(key,26);
          cindex=colres(key,26);
          if(key!=-1)
          {
-
+             if(hash_table2[nindex]==-1)
+                    hash_table2[nindex]=key;
+             else
+             {
+                    hash_table2[cindex]=key;
+             }
+             
          }
+     }
+     
+     printf("\n THE FINAL HASH TABLE IS ......");
+     for(i=0;i<26;i++)
+     {
+         printf(" %d ",hash_table[i]);
      }
 }
