@@ -3,7 +3,7 @@ int hash_table[13];int hash_table2[26];
 int h1(int key,int l)
 {
     int temp=key%13;
-    printf("\n the index it %d",temp);
+    
     return temp;
 
 }
@@ -19,7 +19,7 @@ int colres(int key,int l)
         temp=(h1(key,l)+i*h2(key,l))%13;
         if(hash_table[temp]==-1)
         {
-                printf("\n the index it %d",temp);
+
                 return temp;}
         else
             continue;
@@ -39,10 +39,7 @@ void main()
     {
         scanf("%d",&key);
         nindex=h1(key,13)+1;
-        printf("\n the normal returnd index it %d",nindex);
-
         cindex=colres(key,13)+1;
-        printf("\n the coll returnd index it %d",cindex);
         if(hash_table[nindex]==-1)
         hash_table[nindex]=key;
         else
@@ -62,6 +59,7 @@ void main()
      printf("\n THE LOAD FACTOR IS NOW > 50 MAKING NEW HASH TABLE AND REHASHING.......");
      for(i=0;i<26;i++)
         hash_table2[i]=-1;
+        
      for(i=0;i<26;i++)
      {
          key=hash_table[i];
@@ -78,6 +76,21 @@ void main()
              
          }
      }
+     printf("\n enter the rest of the keys");
+     for(i=count;i<n;i++)
+     {
+         scanf("%d",&key);
+         nindex=h1(key,26);
+         cindex=colres(key,26);
+         if(hash_table2[nindex]==-1)
+                    hash_table2[nindex]=key;
+             else
+             {
+                    hash_table2[cindex]=key;
+             }
+         
+     }
+
      
      printf("\n THE FINAL HASH TABLE IS ......");
      for(i=0;i<26;i++)
