@@ -1,4 +1,4 @@
-/*backend code for selection sort insertion sort and quick sort*/
+/*backend code for selection sort insertion sort and quick sort[WIP]*/
 void selectionsort(int a[],int n)
 {
     int temp,i,j,index_min;
