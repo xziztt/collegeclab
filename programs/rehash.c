@@ -2,7 +2,7 @@
 int hash_table[13];int hash_table2[26];
 int h1(int key,int l)
 {
-    int temp=key%13;
+    int temp=key%l;
     
     return temp;
 
@@ -14,9 +14,9 @@ int h2(int key,int l)
 int colres(int key,int l)
 {
     int i,temp;
-    for(i=0;i<13;i++)
+    for(i=0;i<l;i++)
     {
-        temp=(h1(key,l)+i*h2(key,l))%13;
+        temp=(h1(key,l)+i*h2(key,l))%l;
         if(hash_table[temp]==-1)
         {
 
