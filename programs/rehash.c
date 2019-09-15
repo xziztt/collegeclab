@@ -2,7 +2,7 @@
 int hash_table[13];int hash_table2[26];
 int h1(int key,int l)
 {
-    int temp=key%13;
+    int temp=key%l;
     
     return temp;
 
@@ -14,9 +14,9 @@ int h2(int key,int l)
 int colres(int key,int l)
 {
     int i,temp;
-    for(i=0;i<13;i++)
+    for(i=1;i<l;i++)
     {
-        temp=(h1(key,l)+i*h2(key,l))%13;
+        temp=(h1(key,l)+i*h2(key,l))%l;
         if(hash_table[temp]==-1)
         {
 
@@ -38,8 +38,8 @@ void main()
     while(j<=n&&lf<=50)
     {
         scanf("%d",&key);
-        nindex=h1(key,13)+1;
-        cindex=colres(key,13)+1;
+        nindex=h1(key,13);
+        cindex=colres(key,13);
         if(hash_table[nindex]==-1)
         hash_table[nindex]=key;
         else
@@ -60,7 +60,7 @@ void main()
      for(i=0;i<26;i++)
         hash_table2[i]=-1;
         
-     for(i=0;i<26;i++)
+     for(i=0;i<13;i++)
      {
          key=hash_table[i];
          nindex=h1(key,26);
@@ -75,6 +75,11 @@ void main()
              }
              
          }
+         else
+         {
+             continue;
+         }
+         
      }
      printf("\n enter the rest of the keys");
      for(i=count;i<n;i++)
@@ -95,6 +100,6 @@ void main()
      printf("\n THE FINAL HASH TABLE IS ......");
      for(i=0;i<26;i++)
      {
-         printf(" %d ",hash_table[i]);
+         printf(" %d ",hash_table2[i]);
      }
 }
