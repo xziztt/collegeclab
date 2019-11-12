@@ -75,11 +75,11 @@ void printLinkedList(){
     printf(" %d ",temp->data);
 }
 void insertAtPos(int pos){
-    struct node*temp;
+    struct node*temp,*newNode;
     temp=head;
     while(temp->next!=NULL){
         if(temp->data==pos){
-         newNode=(struct node)   
+         newNode=(struct node);  
         }
 
     }
