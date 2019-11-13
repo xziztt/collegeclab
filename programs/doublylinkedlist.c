@@ -2,92 +2,104 @@
 #include<stdlib.h>
 struct node{
     int data;
-    struct node *next;
-    struct node *prev;
-}*head,*temp;
+    struct node *next,*prev;
+}*head=NULL,*temp=NULL;
 void makeNewNode(int n){
-    int i;
-    int data;
-    struct node*newNode;
-    head=(struct node*)malloc(sizeof(struct node));
-    if(head==NULL){
-        printf("\n Could not allocate memory");
-    }
-    else{
-        printf("\n enter data for head");
-        scanf("%d",&data);
-        head->data=data;
-        head->next=NULL;
-        head->prev=NULL;
-        temp=head;
-        for(i=1;i<n;i++){
-            printf("\n insdie for loop");
-            newNode=(struct node*)malloc(sizeof(struct node));
-            if(newNode==NULL){
-                printf("\n couldnt allocate memory");
-            }
-            else{
-            temp->next=newNode;   
-            scanf("%d",&data);
-            newNode->data=data;
-            newNode->next=NULL;
-            newNode->prev=temp;
-            temp=newNode;
-            }
+struct node*newNode=NULL;
+int data;
+scanf("%d",&data);
+newNode=(struct node*)malloc(sizeof(struct node));
+newNode->data=data;
+newNode->next=NULL;
+newNode->prev=NULL;
+head=newNode;
+temp=head;
+int i;
+for(i=0;i<n-1;i++){
+    scanf("%d",&data);
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=data;
+    newNode->next=NULL;
+    newNode->prev=temp;
+    temp->next=newNode;
+    temp=newNode;
 
-        }
+}
+}
+void deletenode(int todelete){
+    temp=head;
+    while(temp->data!= todelete){
+        temp=temp->next;
 
     }
-
-
-
+    struct node*temp2;
+    temp2=temp->prev;
+    temp2->next=temp->next;
+    free(temp);
+    
 }
 void insertAtBeginning(){
     int data;
-    struct node *newNode;
+    scanf("%d",&data);
+    struct node *newNode=NULL;
+    printf("\n going to make newnode");
     newNode=(struct node*)malloc(sizeof(struct node));
-    if(newNode==NULL){
-        printf("\n could not allocate memory");
-        
-    }
-    else{
-        printf("\n Enter data you need to enter at the beginning ");
-        scanf("%d",&data);
-        newNode->data=data;
-        newNode->next=head;
-        newNode->prev=NULL;
-        head=newNode;
-    }
+    newNode->data=data;
+    newNode->prev=NULL;
+    newNode->next=head;
+    head=newNode;
+
 }
-void printLinkedList(){
-    struct node*temp;
+void insertatend(){
+    int data;
+    scanf("%d",&data);
     temp=head;
-    //head=head->next;
-    //printf("head data is%d",temp->data);
-    //printf("\n inside printLinkedList");
     while(temp->next!=NULL){
-        //printf("\n inside while loop");
+        temp=temp->next;
+    }
+    struct node*newNode;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=data;
+    newNode->next=NULL;
+    temp->next=newNode;
+    newNode->prev=temp;
+}
+void printx(){
+    temp=head;
+    while(temp!=NULL){
         printf(" %d ",temp->data);
         temp=temp->next;
-
-
     }
-    printf(" %d ",temp->data);
 }
-void insertAtPos(int pos){
-    struct node*temp,*newNode;
+void insertafternode(int after){
+    int data;
+    scanf("%d",&data);
     temp=head;
-    while(temp->next!=NULL){
-        if(temp->data==pos){
-         newNode=(struct node);  
-        }
-
+    while(temp->data!=after){
+        temp=temp->next;
     }
+    struct node *newNode;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=data;
+    newNode->prev=temp;
+    newNode->next=temp->next;
+    temp->next=newNode;
+   
 }
-
 void main(){
     makeNewNode(5);
-    printLinkedList();
+    printx();
+    int todelete;
     insertAtBeginning();
-    printLinkedList();
+    printf("\n enter data to delete");
+    scanf("%d",&todelete);
+    deletenode(todelete);
+    printx();
+    insertatend();
+    printx();
+    int after;
+    printf("\n insert after ??");
+    scanf("%d",&after);
+    insertafternode(after);
+    printx();
 }
