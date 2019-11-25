@@ -118,47 +118,18 @@ void insertatend(){
 		temp->next=newnode;
 	}
 }
-void deletenode(){
-	int item;
-	scanf("%d",&item);
-	struct node *temp,*temp2;
-	temp = (struct node *)malloc(sizeof(struct node));
-	temp=head;
-	struct node* nope;
-	while(temp->next!=NULL){
-		printf("\n inside loop 1");
-		if(temp->data == item){
-			nope=temp->next;
-			temp2 = (struct node *)malloc(sizeof(struct node));
-			temp2=head;
-			while(temp2->next!=NULL){
-					printf("\n inside loop2");
-					if(temp2->next==temp){
-						temp2->next=temp->next;
-					}
-					else
-						temp2=temp2->next;
-				
-			}
-	
-			free(temp);
-		}
-		else(temp=temp->next);
-	}
 
 
-
-
-void deleteNode(struct Node **head_ref, int key) 
-{ 
+/*//void deleteNode(struct Node **head_ref, int key) 
+//{ 
     // Store head node 
-    struct Node* temp = *head_ref, *prev; 
+  //  struct Node* temp = *head_ref, *prev; 
   
     // If head node itself holds the key to be deleted 
-    if (temp != NULL && temp->data == key) 
-    { 
-        *head_ref = temp->next;   // Changed head 
-        free(temp);               // free old head 
+    //if (temp != NULL && temp->data == key) 
+    //{ 
+      //  *head_ref = temp->next;   // Changed head 
+    	free(temp);               // free old head 
         return; 
     } 
   
@@ -178,25 +149,58 @@ void deleteNode(struct Node **head_ref, int key)
   
     free(temp);  // Free memory 
 } 
+*/
+void deletenode(){
+	int data;
+	scanf("%d",&data);
+	struct node*temp=head;
+	struct node*temp2=head->next;
+	if(temp->data==data){
+		head=temp2;
+		free(temp);
+	}
+	else{
+		while(temp2->data!=data&&temp2!=NULL){
+			temp=temp2;
+			temp2=temp2->next;
+		}
+		temp->next=temp2->next;
+		free(temp2);
+}
+
+	}
 		
 				
 			
-	
-			
-}
-void printnodes(){
-	struct node* tempx;
-	tempx=head;
-	while(tempx->next!=NULL){
-		printf("  %d  ",tempx->data);
-		tempx=tempx->next;
-	}
-	printf(" %d ",tempx->data);
-}
-
-			
-	
+void sort(){
+	struct node*temp,*temp2,*min;
+	temp=head;
+	while(temp!=NULL){
+		min=temp;
+		temp2=temp->next;
+		while(temp2!=NULL){
+			if(min->data>temp2->data){
+				min = temp2;
+			}
+				temp2=temp2->next;
 		
+		}
+		int x= min->data;
+		min->data=temp->data;
+		temp->data=x;
+		temp=temp->next;
+		
+	}
+}
+			
+	
+		void printx(){
+    	struct node *temp=head;
+    while(temp!=NULL){
+        printf(" %d ",temp->data);
+        temp=temp->next;
+    }
+}
 			
 	
 
@@ -208,7 +212,7 @@ int totn;
 printf("\n enter the number of elements ");
 scanf("%d",&n);
 makenewnode(n);
-printnodes();
+printx();
 printf("1.at end? \n 2.at beginning? \n 3.at a pos ? \n 4.exit ?");
 
 do{
@@ -225,7 +229,7 @@ do{
 		break;
 		case 4:	printf("\n exiting");
 			break;
-		case 5: deletenode();
+		case 5: sort();
 			break;
 		default:printf("\n choose a valid choice pls");
 		break;
@@ -233,5 +237,5 @@ do{
 	
 }
 }while(choice!=4);
-printnodes();
+printx();
 }

@@ -3,7 +3,7 @@
 struct node{
     int data;
     struct node*next;
-}*temp,*head;
+}*temp,*head,*head2=NULL,*temp2;
 void makenewnode(int n){			//making a new linked list
 	int data;	
 	struct node* temp,*newnode,*temp2;
@@ -20,6 +20,43 @@ void makenewnode(int n){			//making a new linked list
 	head->data=data;
 	head->next=NULL;
 	temp=head;
+	for(i=2;i<=n;i++){
+		printf("%d running \n",i);
+		newnode = (struct node *)malloc(sizeof(struct node));	
+		if(newnode==NULL){
+			printf("\n memory could not be allocated");
+		}	
+		else{
+			printf("\n enter the data");
+			scanf("%d",&data);
+			newnode->data=data;
+			newnode->next=NULL;
+			temp->next=newnode;
+			//printf("add  %d \n",temp->next);
+			temp=newnode;
+			
+			
+		}
+	
+	}
+	}
+}
+void makenewnode2(int n){			//making a new linked list
+	int data;	
+	struct node* temp,*newnode,*temp2;
+	
+	head2 = (struct node *)malloc(sizeof(struct node));
+	if(head2==NULL){
+		printf("\n memory could not be allocated");
+	}
+	else{
+		
+	int i;
+	printf("\n enter the data of node1 ");	//inserting at the first position
+	scanf("%d",&data);
+	head2->data=data;
+	head2->next=NULL;
+	temp=head2;
 	for(i=2;i<=n;i++){
 		printf("%d running \n",i);
 		newnode = (struct node *)malloc(sizeof(struct node));	
@@ -61,6 +98,14 @@ void printx(){
     }
     printf("\n");
 }
+void printx2(){
+    temp2=head2;
+    while(temp2!=NULL){
+        printf(" %d ",temp2->data);
+        temp2=temp2->next;
+    }
+    printf("\n");
+}
 void checkpalindrome(){
     struct node*temp=head;
     int a[10];int i=0;int b[10];int j=0;
@@ -91,10 +136,44 @@ void checkpalindrome(){
         printf("\n it is not a palindrome");
     }
 }
+void splitMake(int data){
+    struct node*newNode;
+    if(head2==NULL){
+        head2=(struct node*)malloc(sizeof(struct node));
+        head2->data=data;
+        head->next=NULL;
+        temp2=head2;
+    }
+    else{
+        newNode=(struct node*)malloc(sizeof(struct node));
+        newNode->data=data;
+        temp2->next=newNode;
+        temp2=newNode;
+        newNode->next=NULL;
+    }
+}
+void split(){
+    temp=head;
+    while(temp!=NULL){
+        printf("\n data = %d",temp->data);
+        if(temp->data%2==0){
+            splitMake(temp->data);
+            printf("true");
+
+        }
+        temp=temp->next;
+        printf("\n next");
+    }
+    
+
+}
 void main(){
     makenewnode(5);
     printx();
-    reverse();
-    printx();
-    checkpalindrome();
+    split();
+    //printx();
+    //checkpalindrome();
+    //reverse();
+    printx2();
+
 }
