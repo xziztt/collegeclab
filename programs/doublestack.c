@@ -31,7 +31,6 @@ void push2(){
     queue[top2]=data;
 }
 void pop1(){
-    printf("\n pop1");
     if(top1==-1){
         printf("\n underflow");
 
@@ -40,7 +39,6 @@ void pop1(){
         top1--;
 }
 void pop2(){
-    printf("\n pop2");
     if(top2==10){
         printf("\n underflow");
 
@@ -57,19 +55,20 @@ void printx(){
     int i;int temp1,temp2;
     temp1=top1;
     temp2=top2;
-    for(i=temp1;i>=0;i--){
+    printf("\n");
+    for(i=top1;i>=0;i--){
         printf(" %d ",queue[i]);
     }
-    for(i=temp2;i<9;i++){
+    for(i=top2;i<9;i++){
         printf(" %d ",queue[i]);
     }
 }
 void main(){
     int i;
-    for(i=0;i<2;i++){
+    for(i=0;i<3;i++){
         push1();
     }
-    for(i=0;i<2;i++){
+    for(i=0;i<3;i++){
         push2();
     }
 
